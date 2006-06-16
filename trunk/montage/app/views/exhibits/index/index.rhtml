@@ -1,0 +1,27 @@
+<% page_title( "Exhibit: #{@exhibit.title}" ) %>
+
+<h1><%=  @exhibit.title %></h1>
+
+<% if @inner_exhibits.length() > 0 %>
+<h1>Inner Exhibits</h1>
+<ol>
+<% @inner_exhibits.each { |exhibit| %>
+<li>
+<%= link_to "#{exhibit.title}", exhibits_index_url(:id => "#{exhibit.id}") %>
+</li>
+<% } %>
+</ol>
+<% end %>
+
+
+<% if @outer_exhibits.length() > 0 %>
+<h1>Outer Exhibits</h1>
+<ol>
+<% @outer_exhibits.each { |exhibit| %>
+<li>
+<%= link_to "#{exhibit.title}", exhibits_index_url(:id => "#{exhibit.id}") %>
+</li>
+<% } %>
+</ol>
+<% end %>
+
