@@ -10,7 +10,7 @@ class Exhibits::IndexController < ApplicationController
     
     @inner_exhibits = [ ]  
     
-    ExhibitLink.find_all_by_outer_exhibit_id(@exhibit.id).each { |exhibit_link|
+    ExhibitLink.find_all_by_exhibit_id(@exhibit.id).each { |exhibit_link|
       @inner_exhibits << Exhibit.find_by_id(exhibit_link.inner_exhibit_id)
     }
     
