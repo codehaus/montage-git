@@ -7,27 +7,27 @@ et = ExhibitType.find_by_key("jpg")
 
 eLibrary = Exhibit.new()
 eLibrary.title = "The library with books!"
-eLibrary.exhibit_type = et
+eLibrary.exhibit_type_id = et.id
 eLibrary.save!
 
 puts "The new library is open - ##{eLibrary.id}"
 
 
 eBook = Exhibit.new(:title => "Newbs guide to rails")
-eBook.exhibit_type = et
+eBook.exhibit_type_id = et.id
 eBook.save!
 
 eBook2 = Exhibit.new(:title => "So you enjoy restarting containers?")
-eBook2.exhibit_type = et
+eBook2.exhibit_type_id = et.id
 eBook2.save!
 
 
 eBookLibrary = ExhibitLink.new()
-eBookLibrary.outer_exhibit_id = eLibrary.id
+eBookLibrary.exhibit_id = eLibrary.id
 eBookLibrary.inner_exhibit_id = eBook.id
 eBookLibrary.save!
 
 eBookLibrary = ExhibitLink.new()
-eBookLibrary.outer_exhibit_id = eLibrary.id
+eBookLibrary.exhibit_id = eLibrary.id
 eBookLibrary.inner_exhibit_id = eBook2.id
 eBookLibrary.save!
