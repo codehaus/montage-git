@@ -4,9 +4,9 @@ class InsertExhibitTypes < ActiveRecord::Migration
       { :key=>'jpg', :label=>'JPEG', :mime_type=>"image/jpeg" },
       { :key=>'png', :label=>'PNG', :mime_type=>"image/png" },
       { :key=>'mov', :label=>'MOV', :mime_type=>"movie/quicktime" },
-    ].each{|e|
-      scm_type = ScmType.new( e )
-      scm_type.save!
+    ].each{|data|
+      o = ExhibitType.new( data )
+      o.save!
     }
   end
 
