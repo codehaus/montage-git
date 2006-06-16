@@ -2,19 +2,23 @@
 require File.dirname(__FILE__) + '/../config/boot'
 require RAILS_ROOT + '/config/environment'
 
+et = ExhibitType.find_by_key("jpg")
 
 
 eLibrary = Exhibit.new()
 eLibrary.title = "The library with books!"
+eLibrary.exhibit_type = et
 eLibrary.save!
 
 puts "The new library is open - ##{eLibrary.id}"
 
 
 eBook = Exhibit.new(:title => "Newbs guide to rails")
+eBook.exhibit_type = et
 eBook.save!
 
 eBook2 = Exhibit.new(:title => "So you enjoy restarting containers?")
+eBook2.exhibit_type = et
 eBook2.save!
 
 
