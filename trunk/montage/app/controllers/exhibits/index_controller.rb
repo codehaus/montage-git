@@ -1,5 +1,4 @@
 class Exhibits::IndexController < ApplicationController
-  layout "standard", :except =>[ :rss,:atom] 
   
   def index
     id = params[:id]

@@ -2,6 +2,10 @@
 
 <h1><%=  @exhibit.title %></h1>
 
+<a href="/exhibits/<%= @exhibit.id %>/view">
+<img src="/exhibits/<%= @exhibit.id %>/content/200x200" alt="image here"/>
+</a>
+
 <% if @inner_exhibits.length() > 0 %>
 <h1>Inner Exhibits</h1>
 <ol>

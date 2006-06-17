@@ -17,9 +17,13 @@ ActionController::Routing::Routes.draw do |map|
   # instead of a file named 'wsdl'
 
   map.connect '', :controller => 'home/index', :action => 'index'
-  map.connect 'pies', :controller => 'pies/index', :action => 'index'
+  
+  #map.exhibits_content 'exhibits/:id/content', :controller => 'exhibits/content', :action => 'send', :mode => 'default'  
+  map.exhibits_content 'exhibits/:id/content/:mode', :controller => 'exhibits/content', :action => 'send'  
+  
   map.exhibits_index 'exhibits/:id', :controller => 'exhibits/index', :action => 'index'  
-
+  map.exhibits_view 'exhibits/:id/view', :controller => 'exhibits/view', :action => 'index'
+  
 
     
 
