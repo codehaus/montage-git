@@ -1,0 +1,26 @@
+body {
+ margin: 0;
+}
+
+
+div.infobar {
+ font: message-box;
+ font-size: 0.7em;
+ width: 100%;
+}
+	
+div.infobar a, div.infobar a:link, div.infobar a:visited, div.infobar a:active {
+ display: block;
+ width: 100%;
+ color: InfoText;
+ background: InfoBackground url(../images/warning.png) no-repeat fixed .3em .3em;
+ padding: .45em .3em .45em 2em;
+ border-bottom: 1px outset;
+ text-decoration: none;
+ cursor: default;
+}
+
+div.infobar a:hover {
+ color: HighlightText;
+ background: Highlight url(../images/warning-hover.png) no-repeat fixed .3em .3em;
+}

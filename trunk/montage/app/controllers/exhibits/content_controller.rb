@@ -1,4 +1,5 @@
 require 'RMagick'
+require 'ftools'
 
 class Exhibits::ContentController < ApplicationController
   #layout "standard", :except =>[ :content]
@@ -20,20 +21,25 @@ class Exhibits::ContentController < ApplicationController
     if not File.exists?(@exhibit.data_location(mode))
       raw_file = @exhibit.data_location("raw")
       img = Magick::Image::read(raw_file).first
-
-      if mode == "200x200"
-        thumb = img.scale(200, 200)
-        thumb.write @exhibit.data_location(mode)
+      
+      if mode == "100x100" or mode == "200x200" or mode == "400x400" or mode == "600x600" or mode == "800x800"
+        thumb = scale(img, mode)
       end
       
-      if mode == "800x800"
-        thumb = img.scale(800, 800)
+      if thumb
+        @exhibit.make_data_location( mode )
         thumb.write @exhibit.data_location(mode)
       end
       
     end
     
     send_file @exhibit.data_location(mode), :type => exhibit_type.mime_type, :disposition => "inline"
+  end
+  
+  def scale(image, geometry)
+    image.change_geometry!(geometry) { |cols, rows, img|
+      return img.resize(cols, rows)
+    }
   end
 
 

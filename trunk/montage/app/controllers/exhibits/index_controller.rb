@@ -20,4 +20,29 @@ class Exhibits::IndexController < ApplicationController
     }
     
   end
+  
+  def _editable_get_exhibit_title
+    @exhibit = Exhibit.find_by_key( params[:id] )
+    render :text=>@exhibit.title, :layout=>false
+  end
+  
+  def upload
+  puts "uploading new school!"
+    id = params[:id]
+    @exhibit = Exhibit.find_by_id( id )
+
+    e = Exhibit.new()
+    e.title = 'New image'
+    e.exhibit_type_id = 1
+    e.upload_file_from_web( @params['data_file'] )
+    e.save!
+    
+    el = ExhibitLink.new()
+    el.exhibit_id = @exhibit.id
+    el.inner_exhibit_id = e.id
+    el.save!
+    
+    
+    redirect_to :action => 'index', :id => e.id
+  end
 end

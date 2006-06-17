@@ -1,0 +1,35 @@
+div.tools {
+ background-color: #f3f3f3;
+ border: 1px solid #bbb;
+ margin-top: 10px;
+ padding: 3px;
+ text-align: left;
+ font-size: 0.8em;
+}
+
+.tool {
+ text-decoration: none;
+ height: 16px;
+ width: 16px;
+ float: left;
+ display: block;
+ padding: 2px;
+ 
+ /* Without this border, turning the border on during a hover will cause reflow */
+ border: 1px solid #f3f3f3;
+}
+
+
+.tool:hover {
+ background-color: #ddd;
+ border: 1px solid #bbb;
+}
+
+.toolend {
+ clear: both;
+}
+
+
+.tool img {
+ border: 0;
+}

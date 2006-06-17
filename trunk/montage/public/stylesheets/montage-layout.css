@@ -1,0 +1,12 @@
+.nav-top {
+ border: 1px solid #ddd;
+ background-color: #eee;
+ margin-left: auto;
+ margin-right: auto;
+
+}
+
+.nav-top .nav-item {
+ padding: 3px;
+ width: 100px;
+}

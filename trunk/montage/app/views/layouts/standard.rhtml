@@ -1,9 +1,15 @@
 <html> 
 <head> 
   <title><%= @page_title %></title> 
-  <%=stylesheet_link_tag'scaffold' %> 
+  <%= stylesheet_link_tag    'montage' %> 
+  <%= javascript_include_tag 'prototype' %>
+  <%= javascript_include_tag 'effects' %>
+  <%= javascript_include_tag 'controls' %>    
 </head> 
 <body> 
+ <div class="nav-top">
+   <div class="nav-item"><%= link_to 'Home', :controller=>'/home/index', :action=>'index' %></div>
+ </div>
 <%= yield %>    
 </body> 
 </html> 

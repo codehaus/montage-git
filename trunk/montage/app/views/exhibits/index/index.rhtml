@@ -1,31 +1,54 @@
 <% page_title( "Exhibit: #{@exhibit.title}" ) %>
 
-<h1><%=  @exhibit.title %></h1>
+<div class="exhibit-title">
+ <%= editable :exhibit, :title, true, 50, 1 %>
+</div>
 
-<a href="/exhibits/<%= @exhibit.id %>/view">
-<img src="/exhibits/<%= @exhibit.id %>/content/200x200" alt="image here"/>
-</a>
-
-<% if @inner_exhibits.length() > 0 %>
-<h1>Inner Exhibits</h1>
-<ol>
-<% @inner_exhibits.each { |exhibit| %>
-<li>
-<%= link_to "#{exhibit.title}", exhibits_index_url(:id => "#{exhibit.id}") %>
-</li>
-<% } %>
-</ol>
-<% end %>
-
+<div class="exhibit-short-description"
+ <%= editable :exhibit, :short_description, true, 50, 3 %>
+</div>
 
 <% if @outer_exhibits.length() > 0 %>
-<h1>Outer Exhibits</h1>
-<ol>
+Back up to
+
 <% @outer_exhibits.each { |exhibit| %>
-<li>
 <%= link_to "#{exhibit.title}", exhibits_index_url(:id => "#{exhibit.id}") %>
-</li>
 <% } %>
 </ol>
 <% end %>
+<br/>
+
+
+<a href="/exhibits/<%= @exhibit.id %>/view">
+<img src="/exhibits/<%= @exhibit.id %>/content/600x600" alt="<%= @exhibit.title %>"/></a>
+
+<% if @inner_exhibits.length() > 0 %>
+
+<br/>
+
+<% @inner_exhibits.each { |exhibit| %>
+
+<div class="thumbnail">
+	<div style="width: 205px">
+      <% img_src = "<img src='/exhibits/#{exhibit.id}/content/100x100' alt='#{exhibit.title}'/>" %>
+	  <%= link_to "#{img_src}", exhibits_index_url(:id => "#{exhibit.id}"), :class=>'thumbnail' %>
+	</div>
+	<div>
+	  <%= exhibit.short_description %>
+	</div>
+</div>
+	
+<% } %>
+	
+<% end %>
+
+
+
+
+
+
+<%= form_tag({:action=>'upload'}, :multipart => true)%>
+ <input type="file" name="data_file" />
+ <input type="submit" name="Upload" value="Upload file"/>
+</form>
 

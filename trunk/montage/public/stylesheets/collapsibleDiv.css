@@ -1,0 +1,21 @@
+.collapsible {
+    width: auto;
+    border: 1px solid #ccc;
+    background-color: #eee;
+    margin-top: 2px;
+}
+
+.collapsible .collapsibleHead {
+	cursor: default;
+}
+
+.collapsible .collapsibleBody {
+    border-top: 1px solid #ddd;
+    background-color: #f0f0f0;
+}
+
+.collapsibleIcon {
+    font-family: courier-new, courier, monospace;
+    letter-spacing: -2px;
+}
+

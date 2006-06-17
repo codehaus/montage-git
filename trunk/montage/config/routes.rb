@@ -23,7 +23,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.exhibits_index 'exhibits/:id', :controller => 'exhibits/index', :action => 'index'  
   map.exhibits_view 'exhibits/:id/view', :controller => 'exhibits/view', :action => 'index'
-  
+  map.connect 'exhibits/:id/upload', :controller => 'exhibits/index', :action => 'upload'
+
+  #AJAX Pieces
+  map.connect 'ajax/exhibit/:id/:action', :controller => 'ajax/exhibit'
 
     
 
