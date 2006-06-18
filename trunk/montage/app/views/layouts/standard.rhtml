@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<!-- Recommended XHTML-Editor: HTML-Kit 292 (Freeware) -->
+<!-- http://www.chami.com/html-kit/download/ -->
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+  <meta name="description" content="Your description goes here" />
+  <meta name="keywords" content="your,keywords,goes,here" />
+  
+  <%= stylesheet_link_tag    'montage', :media=>"screen,projection" %> 
+  <%= stylesheet_link_tag    'style_screen', :media=>"screen,projection" %> 
+  <%= stylesheet_link_tag    'style_print', :media=>"print" %> 
+
+  <script type="text/javascript" src="./js/matching_columns.js"></script>
+	
+  <%= javascript_include_tag 'prototype' %>
+  <%= javascript_include_tag 'effects' %>
+  <%= javascript_include_tag 'controls' %>    
+	
+  <title><%= @page_title %></title>
+</head>
+
+<body>
+  <div class="page-container-1">
+
+    <!-- Navigation Level 1 -->
+    <div class="nav1-container">
+      <div class="nav1">
+		<ul>
+    	    <li><a href="/">Home</a></li>
+    	    <li><%= link_to "About", :controller=>"/about/index", :action=>"index" %></li>
+         	<!--li><a href="#">Contact</a></li>																		
+         	<li><a href="#">Sitemap</a></li-->
+        </ul>
+	  </div>
+    </div>			
+
+    <!-- Sitename -->
+	<div class="site-name">
+      <p class="title"><a href="index.html"><%= Montage::SITE_NAME %></a></p>
+      <p class="subtitle"><a href="http://montage.codehaus.org/">Powered by Montage</a></p>
+    </div>
+    
+    <!-- Header banner -->	
+	<div style="height:55px">&nbsp;</div>						    		 						
+    
+    <!-- Navigation Level 2 -->												
+    <!--div class="nav2">			
+	  <ul>
+        <li><a href="index.html" class="selected">Layout 1</a></li>
+        <li><a href="layout2.html">Layout 2</a></li>
+        <li><a href="layout3.html">Layout 3</a></li>
+        <li><a href="options_basic.html">Basic Options</a></li>			
+        <li><a href="options_extra.html">Extra Options</a></li>
+	  </ul>
+	</div-->
+    
+    <!-- Buffer after header -->    
+		<div class="buffer"></div>
+						
+  	<!-- 	CONTENT -->
+	<div class="content1">
+
+  	  <!-- Page title -->		
+	  <div class="content1-pagetitle">Welcome to MultiFlex-2</div>			
+		<%= yield %>    
+      </div>
+	</div>		
+
+      
+				
+    <!-- FOOTER -->
+    <div class="footer">
+       <p><b>Copyright &copy; 2006 <%= Montage::SITE_NAME %> | All Rights Reserved</b></p>
+       <p><a href="mailto:<%= Montage::WEBMASTER_EMAIL %>"><%= Montage::WEBMASTER_NAME %></a> | <a href="http://validator.w3.org/check?uri=referer" title="Validate code as W3C XHTML 1.1 Strict Compliant">W3C XHTML 1.0</a> | <a href="http://jigsaw.w3.org/css-validator/" title="Validate Style Sheet as W3C CSS 2.0 Compliant">W3C CSS 2.0</a></p>
+    </div>
+  </div>
+</body>
+</html>
