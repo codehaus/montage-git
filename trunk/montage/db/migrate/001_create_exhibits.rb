@@ -3,7 +3,7 @@ class CreateExhibits < ActiveRecord::Migration
     create_table :exhibit_types do |t|
       t.column :key, :string, :null=>false
       t.column :label, :string, :null=>false
-      t.column :mime_type, :string, :null=>false
+      t.column :mime_type, :string, :null=>true
     end
     
     create_table :exhibits do |t|

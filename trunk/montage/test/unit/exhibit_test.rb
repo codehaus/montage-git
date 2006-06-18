@@ -11,11 +11,14 @@ class ExhibitTest < Test::Unit::TestCase
     assert e.prefix("0", 3, "n") == "nn0"
   end
   
-  def test_data_location
+  def test_data_location_default
     e = Exhibit.find_by_id(1)
-    puts e.data_location( 'default' )
-    assert e.data_location( 'default' ) == "./data/00/00/00/00/01/0000000001-default.JPG"
-    assert e.data_location( 'raw' ) == "./data/00/00/00/00/01/0000000001.JPG"
+    assert e.data_location( 'default' ) == "./data/scaled/00/00/00/00/01/0000000001-default.jpg"
+  end
+
+  def test_data_location_raw
+    e = Exhibit.find_by_id(1)
+    assert e.data_location( 'raw' ) == "./data/raw/00/00/00/00/01/0000000001.jpg"
   end
   
 end

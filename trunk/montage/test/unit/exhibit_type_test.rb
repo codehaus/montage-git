@@ -3,8 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class ExhibitTypeTest < Test::Unit::TestCase
   fixtures :exhibit_types
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_find_exhibit_type_for_filename
+    assert ExhibitType.find_exhibit_type_for_filename("grue.jpg").key == "jpg"
   end
 end

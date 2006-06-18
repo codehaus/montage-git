@@ -19,3 +19,12 @@ config.action_view.debug_rjs                         = true
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+
+
+
+
+
+Montage::SITE_NAME = 'Development edition!'
+Montage::HOME_EXHIBIT_ID_1 = 1
+Montage::WEBMASTER_EMAIL = 'test@example.com'
+Montage::WEBMASTER_NAME = 'webmaster'

@@ -33,7 +33,6 @@ class Exhibits::IndexController < ApplicationController
 
     e = Exhibit.new()
     e.title = 'New image'
-    e.exhibit_type_id = 1
     e.upload_file_from_web( @params['data_file'] )
     e.save!
     

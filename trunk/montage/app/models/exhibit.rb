@@ -9,23 +9,20 @@ class Exhibit < ActiveRecord::Base
     #so we assume 10 billion exhibits and 100 entries max to keep performance reasonable
     # 00/00/00/00/00
     tmp_id = id
-    result = ""
+    path = ""
 
     for i in 0...5    
-      result = "/" + prefix( "#{tmp_id % 100}", 2, "0" ) + result
+      path = "/" + prefix( "#{tmp_id % 100}", 2, "0" ) + path
       tmp_id = (tmp_id - (tmp_id % 100)) / 100
     end
     
     #Hardwired to jpeg for now
     if mode == "raw"
-      prefix = "raw"
-      suffix = ""
+      "./data/raw#{path}/#{filename}"
     else
-      prefix = "scaled"
-      suffix = "-#{mode}"
+      "./data/scaled#{path}/#{mode}-#{filename}"
     end
     
-    "./data/#{prefix}#{result}/#{prefix(id, 10, "0")}#{suffix}.jpg"
   end
   
   def make_data_location(mode)
@@ -50,7 +47,8 @@ class Exhibit < ActiveRecord::Base
     puts("Server provided content-type : #{incoming_file.content_type}")
     self.filename = sanitize_filename(incoming_file.original_filename)
     self.title = self.filename
-    exhibit_type = ExhibitType.find_by_mime_type(incoming_file.content_type)
+    #exhibit_type = ExhibitType.find_by_mime_type(incoming_file.content_type)
+    exhibit_type = ExhibitType.find_exhibit_type_for_filename(incoming_file.original_filename)
     self.exhibit_type_id = exhibit_type.id if exhibit_type
     @temp_file = incoming_file
     @temp_file_type = "web"
@@ -60,7 +58,7 @@ class Exhibit < ActiveRecord::Base
     #puts("Server provided content-type : #{incoming_file.content_type}")
     self.filename = sanitize_filename(filename)
     self.title = self.filename
-    exhibit_type = ExhibitType.find_by_id(1)
+    exhibit_type = ExhibitType.find_exhibit_type_for_filename(filename)
     self.exhibit_type_id = exhibit_type.id if exhibit_type
     @temp_file = filename
     @temp_file_type = "fs"

@@ -28,8 +28,10 @@ class Exhibits::ContentController < ApplicationController
       
       if thumb
         @exhibit.make_data_location( mode )
-        thumb.write @exhibit.data_location(mode)
+        thumb.write @exhibit.data_location(mode) {self.quality=50}
       end
+      
+      puts "Input: #{img.columns}x#{img.rows}"
       
     end
     
@@ -37,7 +39,7 @@ class Exhibits::ContentController < ApplicationController
   end
   
   def scale(image, geometry)
-    image.change_geometry!(geometry) { |cols, rows, img|
+    image.change_geometry!(geometry) { |cols, rows, img| 
       return img.resize(cols, rows)
     }
   end

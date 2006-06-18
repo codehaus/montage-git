@@ -52,3 +52,7 @@ end
 
 # Include your application configuration below
 require 'montage/patches'
+
+
+#Montage::SITE_NAME = '63.246.7.187'
+

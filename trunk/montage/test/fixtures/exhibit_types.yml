@@ -1,2 +1,15 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
+folder:
+ key: folder
+ label: folder
+ 
+jpg:
+ key: jpg
+ label: JPEG
+ mime_type: image/jpeg
+ 
+png:
+ key: png
+ label: PNG
+ mime_type: image/png
+ 

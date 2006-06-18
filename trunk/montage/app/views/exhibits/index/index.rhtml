@@ -1,5 +1,18 @@
 <% page_title( "Exhibit: #{@exhibit.title}" ) %>
 
+
+<div class="content1-container line-box">
+				<div class="content1-container-1col">
+					<p class="content-title-noshade-size3">Basic overview</p>                            
+					<p class="content-subtitle-noshade-size1">Experience freedom</p>
+        	<div class="content-txtbox-noshade">
+        	<%= yield %>    
+        	
+          				<p class="readmore">| 15.05.2006 | <a href="#">Read more</a> | <a href="#">Print</a> |</p>
+					</div>
+				</div>
+				
+				
 <div class="exhibit-title">
  <%= editable :exhibit, :title, true, 50, 1 %>
 </div>
@@ -18,34 +31,43 @@ Back up to
 <% end %>
 <br/>
 
-
+<div class="image">
 <a href="/exhibits/<%= @exhibit.id %>/view">
 <img src="/exhibits/<%= @exhibit.id %>/content/600x600" alt="<%= @exhibit.title %>"/></a>
+</div>
 
 <% if @inner_exhibits.length() > 0 %>
 
 <br/>
 
+<table class="thumbnails">
+<% count = 0 %>
+
 <% @inner_exhibits.each { |exhibit| %>
 
+<% if count != 0 and count % 5 == 0 %></tr><% end %>
+<% if count % 5 == 0 %><tr><% end %>
+
+<td>
 <div class="thumbnail">
 	<div style="width: 205px">
       <% img_src = "<img src='/exhibits/#{exhibit.id}/content/100x100' alt='#{exhibit.title}'/>" %>
 	  <%= link_to "#{img_src}", exhibits_index_url(:id => "#{exhibit.id}"), :class=>'thumbnail' %>
 	</div>
 	<div>
-	  <%= exhibit.short_description %>
+	  <% exhibit.title %>
 	</div>
 </div>
-	
+</td>
+<% count = count + 1 %>
 <% } %>
 	
 <% end %>
 
+</table>
 
 
-
-
+<br/>
 
 <%= form_tag({:action=>'upload'}, :multipart => true)%>
  <input type="file" name="data_file" />

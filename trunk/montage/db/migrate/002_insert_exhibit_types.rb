@@ -1,6 +1,7 @@
 class InsertExhibitTypes < ActiveRecord::Migration
   def self.up
     [ 
+      { :key=>'folder', :label=>'Folder', :mime_type=>nil },
       { :key=>'jpg', :label=>'JPEG', :mime_type=>"image/jpeg" },
       { :key=>'png', :label=>'PNG', :mime_type=>"image/png" },
       { :key=>'mov', :label=>'MOV', :mime_type=>"movie/quicktime" },
