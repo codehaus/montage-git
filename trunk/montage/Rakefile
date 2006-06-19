@@ -11,4 +11,3 @@ require 'tasks/rails'
 
 
 require 'tasks/montage'
-require 'lib/montage/patches.rb'

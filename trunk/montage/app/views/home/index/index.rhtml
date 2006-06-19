@@ -1,12 +1,24 @@
 <% page_title( "Home" ) %>
 
-Welcome to the new spartan new photos.walding.com
 
-Old photos will be reloaded soon!
+<div class="content1">
+  	  <!-- Page title -->		
+	  <div class="content1-pagetitle">Welcome to <%= Montage::SITE_NAME %></div>			
+	
+	<p>
+		Welcome to the new photos.walding.com
+	</p>
+	
+	<p>
+		Old photos will be reloaded soon!
+	</p>
 
-<br/>
+	<p>
+		<%= link_to "Browse exhibits", exhibits_index_url( :id => '1' ) %>
+	</p>
 
-<%= link_to "Browse exhibits", exhibits_index_url( :id => '1' ) %>
 
 
 
+
+</div>		

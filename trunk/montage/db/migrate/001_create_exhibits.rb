@@ -13,6 +13,7 @@ class CreateExhibits < ActiveRecord::Migration
       t.column :long_description, :string, :limit=>4096, :null=>true
       t.column :filename, :string, :null=>true #This is of interest to people who take a shiteload of images and use on camera numbering
       t.column :exhibit_type_id, :integer, :null=>false
+      t.column :created_at, :datetime, :null=>false, :default=>'now()'
     end
     fk( :exhibits, :exhibit_type )
 

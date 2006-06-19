@@ -1,10 +1,16 @@
 <% page_title( "Exhibit: #{@exhibit.title}" ) %>
 
+<div class="content1">
+  	  <!-- Page title -->		
+	  <div class="content1-pagetitle"><%= editable :exhibit, :title, true, 50, 1 %></div>			
+
+
 
 <div class="content1-container line-box">
 				<div class="content1-container-1col">
-					<p class="content-title-noshade-size3">Basic overview</p>                            
-					<p class="content-subtitle-noshade-size1">Experience freedom</p>
+					<p class="content-title-noshade-size3"></p>                            
+					<p class="content-subtitle-noshade-size1"><%= editable :exhibit, :short_description, true, 50, 3 %></p>
+					
         	<div class="content-txtbox-noshade">
         	<%= yield %>    
         	
@@ -14,11 +20,10 @@
 				
 				
 <div class="exhibit-title">
- <%= editable :exhibit, :title, true, 50, 1 %>
+ 
 </div>
 
 <div class="exhibit-short-description"
- <%= editable :exhibit, :short_description, true, 50, 3 %>
 </div>
 
 <% if @outer_exhibits.length() > 0 %>
@@ -27,7 +32,6 @@ Back up to
 <% @outer_exhibits.each { |exhibit| %>
 <%= link_to "#{exhibit.title}", exhibits_index_url(:id => "#{exhibit.id}") %>
 <% } %>
-</ol>
 <% end %>
 <br/>
 
@@ -70,7 +74,10 @@ Back up to
 <br/>
 
 <%= form_tag({:action=>'upload'}, :multipart => true)%>
- <input type="file" name="data_file" />
- <input type="submit" name="Upload" value="Upload file"/>
+ <p>
+   <input type="file" name="data_file" />
+   <input type="submit" name="Upload" value="Upload file"/>
+ </p>
 </form>
 
+</div>
