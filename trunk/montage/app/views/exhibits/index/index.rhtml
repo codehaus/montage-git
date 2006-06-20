@@ -7,43 +7,31 @@
 
 
 <div class="content1-container line-box">
-				<div class="content1-container-1col">
-					<p class="content-title-noshade-size3"></p>                            
-					<p class="content-subtitle-noshade-size1"><%= editable :exhibit, :short_description, true, 50, 3 %></p>
-					
-        	<div class="content-txtbox-noshade">
-        	<%= yield %>    
-        	
-          				<p class="readmore">| 15.05.2006 | <a href="#">Read more</a> | <a href="#">Print</a> |</p>
-					</div>
-				</div>
-				
-				
-<div class="exhibit-title">
- 
-</div>
+	<div class="content1-container-1col">
+		<p class="content-title-noshade-size3"></p>                            
+		<p class="content-subtitle-noshade-size1"><%= editable :exhibit, :short_description, true, 50, 3 %></p>
+		
+    	<div class="content-txtbox-noshade">
+    		<p class="readmore">| 15.05.2006 | <a href="#">Read more</a> | <a href="#">Print</a> |</p>
+		</div>
+		</div>
+			
 
-<div class="exhibit-short-description"
-</div>
 
 <% if @outer_exhibits.length() > 0 %>
-Back up to
-
-<% @outer_exhibits.each { |exhibit| %>
-<%= link_to "#{exhibit.title}", exhibits_index_url(:id => "#{exhibit.id}") %>
-<% } %>
+<p> Back up to
+	<% @outer_exhibits.each { |exhibit| %>
+	<%= link_to "#{exhibit.title}", exhibits_index_url(:id => "#{exhibit.id}") %>
+	<% } %>
+</p>
 <% end %>
-<br/>
 
 <div class="image">
-<a href="/exhibits/<%= @exhibit.id %>/view">
-<img src="/exhibits/<%= @exhibit.id %>/content/600x600" alt="<%= @exhibit.title %>"/></a>
+	<a href="/exhibits/<%= @exhibit.id %>/view">
+	<img src="/exhibits/<%= @exhibit.id %>/content/600x600" alt="<%= @exhibit.title %>"/></a>
 </div>
 
 <% if @inner_exhibits.length() > 0 %>
-
-<br/>
-
 <table class="thumbnails">
 <% count = 0 %>
 
