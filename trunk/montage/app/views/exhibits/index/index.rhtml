@@ -1,12 +1,12 @@
 <% page_title( "Exhibit: #{@exhibit.title}" ) %>
 
-<div class="content1">
+<div class="content1" style="width: 100%; padding-top: 5px;">
   	  <!-- Page title -->		
 	  <div class="content1-pagetitle"><%= editable :exhibit, :title, true, 50, 1 %></div>			
 
 
 
-<div class="content1-container line-box">
+<div class="content1-container line-box" style="width: 100%">
 	<div class="content1-container-1col">
 		<p class="content-title-noshade-size3"></p>                            
 		<p class="content-subtitle-noshade-size1"><%= editable :exhibit, :short_description, true, 50, 3 %></p>
@@ -14,7 +14,7 @@
     	<div class="content-txtbox-noshade">
     		<p class="readmore">| 15.05.2006 | <a href="#">Read more</a> | <a href="#">Print</a> |</p>
 		</div>
-		</div>
+	</div>
 			
 
 
@@ -26,10 +26,13 @@
 </p>
 <% end %>
 
-<div class="image">
+<div class="image" style="text-align: center; width: 100%">
 	<a href="/exhibits/<%= @exhibit.id %>/view">
 	<img src="/exhibits/<%= @exhibit.id %>/content/600x600" alt="<%= @exhibit.title %>"/></a>
 </div>
+
+<p class="content-subtitle-noshade-size1"><%= editable_redcloth :exhibit, :long_description, true, 50, 3 %></p>
+
 
 <% if @inner_exhibits.length() > 0 %>
 <table class="thumbnails">

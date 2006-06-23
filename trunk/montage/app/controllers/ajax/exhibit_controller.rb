@@ -1,3 +1,4 @@
+require 'redcloth'
 
 class Ajax::ExhibitController < ApplicationController
   
@@ -47,7 +48,11 @@ class Ajax::ExhibitController < ApplicationController
     @exhibit = get_exhibit()
     @exhibit.long_description = params[:value]
     @exhibit.save!
-    render :text=>@exhibit.long_description, :layout=>false
+    
+    #render :text=>@exhibit.long_description, :layout=>false
+    
+    red = RedCloth.new @exhibit.long_description
+    render :text=>red.to_html, :layout=>false
   end
 
 end
