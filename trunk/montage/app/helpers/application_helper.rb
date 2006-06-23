@@ -1,6 +1,5 @@
-# Methods added to this helper will be available to all templates in the application.
-# 
 require 'redcloth'
+
 module ApplicationHelper
 
   def page_title(title)
@@ -37,6 +36,7 @@ module ApplicationHelper
 END
     html
   end  
+  
   
   def red_render( content )
     red = RedCloth.new content
