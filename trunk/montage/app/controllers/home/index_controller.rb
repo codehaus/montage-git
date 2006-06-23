@@ -1,4 +1,4 @@
 class Home::IndexController < ApplicationController
-  def indexd
+  def index
   end
 end
