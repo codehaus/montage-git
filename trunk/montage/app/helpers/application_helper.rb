@@ -10,6 +10,15 @@ module ApplicationHelper
     @display_logo = display
   end
   
+  def can_edit()
+#    puts @request.inspect
+    remote_addr = request.env["REMOTE_ADDR"] 
+ #   puts "Remote_Addr #{remote_addr}"
+    return true if remote_addr == "127.0.0.1" 
+  #  return true if remote_addr == "192.168.0.4" 
+    return false
+  end
+  
   def editable(object, field, can_edit=false, columns=55, rows=1, options={})
     real_object = self.instance_variable_get( "@#{object}" )
     real_object.reload
@@ -48,7 +57,11 @@ END
     real_object.reload
     raw_content = real_object.send( field )
     if ( ! can_edit )
-      return red_render( raw_content )
+      if ( raw_content == nil || raw_content == '' )
+        return red_render( '' )
+      else
+        return red_render( raw_content )
+      end
     end
     if ( raw_content == nil || raw_content == '' )
       raw_html = "<em>Click to edit #{field.to_s.gsub('_', ' ')}</em>"
