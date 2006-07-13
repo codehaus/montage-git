@@ -19,39 +19,37 @@ class Ajax::ExhibitController < ApplicationController
     render :text=>@exhibit.title, :layout=>false
   end
 
-  def get_exhibit_short_description
+  def get_exhibit_excerpt
     @exhibit = get_exhibit()
-    if not @exhibit.short_description
-      render :text=>"Please enter a short description for this exhibit", :layout=>false
+    if not @exhibit.excerpt
+      render :text=>"Please enter an excerpt for this exhibit", :layout=>false
     else
-      render :text=>@exhibit.short_description, :layout=>false
+      render :text=>@exhibit.excerpt, :layout=>false
     end    
   end
 
-  def set_exhibit_short_description
+  def set_exhibit_excerpt
     @exhibit = get_exhibit()
-    @exhibit.short_description = params[:value]
+    @exhibit.excerpt = params[:value]
     @exhibit.save!
-    render :text=>@exhibit.short_description, :layout=>false
+    render :text=>@exhibit.excerpt, :layout=>false
   end
   
-  def get_exhibit_long_description
+  def get_exhibit_description
     @exhibit = get_exhibit()
-    if not @exhibit.long_description
-      render :text=>"Please enter a long description for this exhibit", :layout=>false
+    if not @exhibit.description
+      render :text=>"Please enter a description for this exhibit", :layout=>false
     else
-      render :text=>@exhibit.long_description, :layout=>false
+      render :text=>@exhibit.description, :layout=>false
     end    
   end
 
-  def set_exhibit_long_description
+  def set_exhibit_description
     @exhibit = get_exhibit()
-    @exhibit.long_description = params[:value]
+    @exhibit.description = params[:value]
     @exhibit.save!
     
-    #render :text=>@exhibit.long_description, :layout=>false
-    
-    red = RedCloth.new @exhibit.long_description
+    red = RedCloth.new @exhibit.description
     render :text=>red.to_html, :layout=>false
   end
 
