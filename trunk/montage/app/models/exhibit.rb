@@ -1,4 +1,5 @@
 require 'ftools'
+require 'RMagick'
 
 class Exhibit < ActiveRecord::Base
   def to_s
@@ -6,24 +7,44 @@ class Exhibit < ActiveRecord::Base
   end
   
   def data_location(mode)
+    path = get_path()
+
+    
+    #Hardwired to jpeg for now
+    if mode == "raw"
+      "./data/raw/#{path}/#{filename}"
+    else
+      "./data/scaled/#{path}/#{mode}-#{filename}"
+    end
+  end
+  
+  def get_path()
+    if created_at()
+      return get_path_from_date()
+    else
+      return get_path_from_id()
+    end
+  end
+  
     #so we assume 10 billion exhibits and 100 entries max to keep performance reasonable
     # 00/00/00/00/00
+  def get_path_from_id()
     tmp_id = id
     path = ""
 
     for i in 0...5    
-      path = "/" + prefix( "#{tmp_id % 100}", 2, "0" ) + path
+      path = path + "/" unless i == 0
+      path = prefix( "#{tmp_id % 100}", 2, "0" ) + path
       tmp_id = (tmp_id - (tmp_id % 100)) / 100
     end
-    
-    #Hardwired to jpeg for now
-    if mode == "raw"
-      "./data/raw#{path}/#{filename}"
-    else
-      "./data/scaled#{path}/#{mode}-#{filename}"
-    end
-    
   end
+  
+  def get_path_from_date()
+    raise Exception.new("illegal call") unless created_at
+    
+    return created_at.strftime("%Y/%m/%d")
+  end
+  
   
   def make_data_location(mode)
     thumb_file = data_location(mode)
@@ -79,6 +100,24 @@ class Exhibit < ActiveRecord::Base
           f.write(IO.read(@temp_file))
         end
       end
+
+      @temp_file = nil      
+      img = Magick::Image::read(data_location("raw")).first
+      self.width = img.columns
+      self.height = img.rows
+      
+      exif_entry = img.get_exif_by_entry('DateTime')
+      
+      if exif_entry[0][1] != nil
+        self.captured_at = Time.parse(exif_entry[0][1].gsub(':', ''))
+      else
+        puts "Unable to determine capture date/time"
+      end
+      #puts "Captured at: #{img.get_exif_by_entry('DateTime').inspect}"
+      #img.get_exif_by_entry().each { |result|
+      #  puts "result: #{result}"
+      #}
+      save!
     end
   end
   
