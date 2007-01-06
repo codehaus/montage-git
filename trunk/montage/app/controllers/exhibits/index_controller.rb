@@ -42,6 +42,6 @@ class Exhibits::IndexController < ApplicationController
     el.save!
     
     
-    redirect_to :action => 'index', :id => e.id
+    redirect_to :action => 'index', :id => @exhibit.id
   end
 end

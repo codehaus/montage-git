@@ -2,19 +2,11 @@
 
 <div class="content1" style="width: 100%; padding-top: 5px;">
   	  <!-- Page title -->		
-	  <div class="content1-pagetitle"><%= editable :exhibit, :title, true, 50, 1 %></div>			
+	  <div class="content1-pagetitle"><%= editable :exhibit, :title, can_edit(), 50, 1 %></div>			
 
 
 
 <div class="content1-container line-box" style="width: 100%">
-	<div class="content1-container-1col">
-		<p class="content-title-noshade-size3"></p>                            
-		<p class="content-subtitle-noshade-size1"><%= editable :exhibit, :short_description, true, 50, 3 %></p>
-		
-    	<div class="content-txtbox-noshade">
-    		<p class="readmore">| 15.05.2006 | <a href="#">Read more</a> | <a href="#">Print</a> |</p>
-		</div>
-	</div>
 			
 
 
@@ -28,10 +20,11 @@
 
 <div class="image" style="text-align: center; width: 100%">
 	<a href="/exhibits/<%= @exhibit.id %>/view">
-	<img src="/exhibits/<%= @exhibit.id %>/content/600x600" alt="<%= @exhibit.title %>"/></a>
+	<img src="/exhibits/<%= @exhibit.id %>/content/500x375" alt="<%= @exhibit.title %>"/></a>
 </div>
 
-<p class="content-subtitle-noshade-size1"><%= editable_redcloth :exhibit, :long_description, true, 80, 10 %></p>
+
+<p class="content-subtitle-noshade-size1"><%= editable_redcloth :exhibit, :description, can_edit(), 80, 10 %></p>
 
 
 <% if @inner_exhibits.length() > 0 %>
@@ -64,11 +57,13 @@
 
 <br/>
 
-<%= form_tag({:action=>'upload'}, :multipart => true)%>
- <p>
-   <input type="file" name="data_file" />
-   <input type="submit" name="Upload" value="Upload file"/>
- </p>
-</form>
+<% if can_edit() %>
+	<%= form_tag({:action=>'upload'}, :multipart => true)%>
+	 <p>
+	   <input type="file" name="data_file" />
+	   <input type="submit" name="Upload" value="Upload file"/>
+	 </p>
+	</form>
+<% end %>
 
 </div>

@@ -9,9 +9,9 @@ class CreateExhibits < ActiveRecord::Migration
     create_table :exhibits do |t|
       # t.column :name, :string
       t.column :title, :string, :null=>false
-      t.column :short_description, :string, :limit=>512, :null=>true
-      t.column :long_description, :string, :limit=>4096, :null=>true
-      t.column :filename, :string, :null=>true #This is of interest to people who take a shiteload of images and use on camera numbering
+      t.column :excerpt, :string, :limit=>512, :null=>true
+      t.column :description, :string, :limit=>4096, :null=>true
+      t.column :filename, :string, :null=>true 
       t.column :exhibit_type_id, :integer, :null=>false
       t.column :created_at, :datetime, :null=>false, :default=>'now()'
     end

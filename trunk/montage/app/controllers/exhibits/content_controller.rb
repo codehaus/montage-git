@@ -22,7 +22,7 @@ class Exhibits::ContentController < ApplicationController
       raw_file = @exhibit.data_location("raw")
       img = Magick::Image::read(raw_file).first
       
-      if mode == "100x100" or mode == "200x200" or mode == "400x400" or mode == "600x600" or mode == "800x800"
+      if mode == "100x100" or mode == "200x200" or mode == "400x400" or mode == "720x720" or mode == "600x600" or mode == "800x800" or mode == "500x375"
         thumb = scale(img, mode)
       end
       
