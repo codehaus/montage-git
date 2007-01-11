@@ -17,3 +17,8 @@ config.action_controller.perform_caching             = false
 # The :test delivery method accumulates sent emails in the
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
+
+Montage::SITE_NAME = 'Development edition!'
+Montage::HOME_EXHIBIT_ID_1 = 1
+Montage::WEBMASTER_EMAIL = 'test@example.com'
+Montage::WEBMASTER_NAME = 'webmaster'

@@ -13,12 +13,12 @@ class ExhibitTest < Test::Unit::TestCase
   
   def test_data_location_default
     e = Exhibit.find_by_id(1)
-    assert e.data_location( 'default' ) == "./data/scaled/00/00/00/00/01/0000000001-default.jpg"
+    assert_equal "./data/scaled/00/00/00/00/01/0000000001-default.jpg", e.data_location( 'default' )
   end
 
   def test_data_location_raw
     e = Exhibit.find_by_id(1)
-    assert e.data_location( 'raw' ) == "./data/raw/00/00/00/00/01/0000000001.jpg"
+    assert_equal "./data/raw/00/00/00/00/01/0000000001.jpg", e.data_location( 'raw' )
   end
   
 end
