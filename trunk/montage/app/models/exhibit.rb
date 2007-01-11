@@ -21,7 +21,7 @@ class Exhibit < ActiveRecord::Base
     if created_at() and false
       return get_path_from_date()
     else
-      return get_path_from_id(id)
+      return Exhibit.get_path_from_id(id)
     end
   end
   
