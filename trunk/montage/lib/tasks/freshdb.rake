@@ -15,10 +15,10 @@ def freshdb()
   puts "user:     #{user}"
   puts "password: #{password}"
 
-  puts `psql -U #{user} -d template1 -c "drop database #{database}"`
-  puts `psql -d template1 -c "drop user #{user}"`
-  puts `psql -d template1 -c "create user #{user} createdb password '#{password}'"`
-  puts `psql -U #{user}  -d template1 -c "create database #{database}"`
+  puts `psql -h localhost -U #{user} -d template1 -c "drop database #{database}"`
+  puts `psql -h localhost -d template1 -c "drop user #{user}"`
+  puts `psql -h localhost -d template1 -c "create user #{user} createdb password '#{password}'"`
+  puts `psql -h localhost -U #{user}  -d template1 -c "create database #{database}"`
 end
 
 desc 'Create a fresh db'
