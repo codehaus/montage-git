@@ -3,12 +3,11 @@ require 'RMagick'
 
 class Exhibit < ActiveRecord::Base
   def to_s
-    "Exhibit[id=#{id}, title=#{title}]"
+    "Exhibit[id=#{id}, filename=#{filename}, title=#{title}]"
   end
   
   def data_location(mode)
     path = get_path()
-
     
     #Hardwired to jpeg for now
     if mode == "raw"
@@ -19,24 +18,25 @@ class Exhibit < ActiveRecord::Base
   end
   
   def get_path()
-    if created_at()
+    if created_at() and false
       return get_path_from_date()
     else
-      return get_path_from_id()
+      return get_path_from_id(id)
     end
   end
   
     #so we assume 10 billion exhibits and 100 entries max to keep performance reasonable
     # 00/00/00/00/00
-  def get_path_from_id()
-    tmp_id = id
+  def self.get_path_from_id(inputid)
+    tmp_id = inputid
     path = ""
 
-    for i in 0...5    
-      path = path + "/" unless i == 0
+    0.upto(4) { |i| 
+      path = "/" + path unless i == 0
       path = prefix( "#{tmp_id % 100}", 2, "0" ) + path
       tmp_id = (tmp_id - (tmp_id % 100)) / 100
-    end
+    }
+    path
   end
   
   def get_path_from_date()
@@ -55,7 +55,7 @@ class Exhibit < ActiveRecord::Base
     end
   end
   
-  def prefix(val, count, prefix)
+  def self.prefix(val, count, prefix)
     string = "#{val}"
     while string.length() < count
       string = prefix + string

@@ -4,8 +4,10 @@ first:
   title: library for books
   exhibit_type_id: 1
   created_at: <%= Time.now %>
+  filename: default.jpg
 another:
   id: 2
   title: the book about books
   exhibit_type_id: 2
   created_at: <%= Time.now %>
+  filename: default.jpg
