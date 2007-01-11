@@ -2,10 +2,12 @@ require 'redcloth'
 
 module ApplicationHelper
 
-  def page_title(title)
-    @page_title = title
-  end
+  attr_reader :page_title
   
+  def set_page_title(page_title)
+    @page_title = h(page_title)
+  end
+
   def display_logo(display)
     @display_logo = display
   end
