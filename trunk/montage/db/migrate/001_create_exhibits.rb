@@ -13,7 +13,7 @@ class CreateExhibits < ActiveRecord::Migration
       t.column :description, :string, :limit=>4096, :null=>true
       t.column :filename, :string, :null=>true 
       t.column :exhibit_type_id, :integer, :null=>false
-      t.column :created_at, :datetime, :null=>false, :default=>'now()'
+      t.column :created_at, :datetime, :null=>false
     end
     fk( :exhibits, :exhibit_type )
 
