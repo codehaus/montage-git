@@ -11,15 +11,20 @@ def freshdb()
   user     = config['username']
   password = config['password']
 
-  puts "database: #{database}"
-  puts "user:     #{user}"
-  puts "password: #{password}"
-
-  puts `psql -h localhost -U #{user} -d template1 -c "drop database #{database}"`
-  puts `psql -h localhost -d template1 -c "drop user #{user}"`
-  puts `psql -h localhost -d template1 -c "create user #{user} createdb password '#{password}'"`
-  puts `psql -h localhost -U #{user}  -d template1 -c "create database #{database}"`
+  psql(user, password, 'localhost', 'template1', "drop database #{database}")
+  psql(user, password, 'localhost', 'template1', "create database #{database}")
 end
+
+def psql(user, pass, host, database, command)
+  ENV['PGUSER'] = user
+  ENV['PGPASSWORD'] = pass
+  ENV['PGHOST'] = host
+  ENV['PGDATABASE'] = database
+  puts "Running: #{command}"
+  `psql -c "#{command}"`
+end
+  
+  
 
 desc 'Create a fresh db'
 task :freshdb => [:environment] do |t|
