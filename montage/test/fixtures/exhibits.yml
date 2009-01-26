@@ -1,13 +1,11 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 first:
-  id: 1
   title: library for books
-  exhibit_type_id: 1
+  exhibit_type: folder
   created_at: <%= Time.now %>
   filename: default.jpg
+  
 another:
-  id: 2
   title: the book about books
-  exhibit_type_id: 2
+  exhibit_type: folder
   created_at: <%= Time.now %>
   filename: default.jpg
